@@ -114,11 +114,20 @@ body {
 }
 
 .section {
-  margin-bottom: 150px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 200px; /* 증가: 150px → 200px */
+  gap: 80px; /* 증가: 60px → 80px */
+}
+
+/* [NEW] 섹션 순서 클래스 추가 */
+.section.image-right {
+  flex-direction: row; /* 이미지 오른쪽 배치 */
+}
+
+.section.image-left {
+  flex-direction: row-reverse; /* 이미지 왼쪽 배치 */
 }
 
 .section-text-content {
@@ -126,14 +135,15 @@ body {
 }
 
 .section-title {
-  font-size: 42px;
-  margin-bottom: 30px;
+  font-size: 48px; /* 증가: 36px → 48px */
   font-weight: 600;
+  margin-bottom: 30px;
+  color: #333;
 }
 
 .section-description {
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 18px; /* 증가: 16px → 18px */
+  line-height: 1.8; /* 수정: 1.6 → 1.8 */
   color: #666;
   word-break: keep-all;
 }
@@ -149,8 +159,8 @@ body {
 }
 
 .circle-image {
-  width: 300px;
-  height: 300px;
+  width: 400px; /* 증가: 300px → 400px */
+  height: 400px; /* 증가: 300px → 400px */
   border-radius: 50%;
   object-fit: cover;
 }
@@ -210,9 +220,12 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .section {
-    grid-template-columns: 1fr;
+  .section,
+  .section.image-right,
+  .section.image-left {
+    flex-direction: column; /* 모바일에서는 항상 세로 배치 */
     gap: 40px;
+    margin-bottom: 120px;
   }
 
   .section-text-content {
@@ -222,6 +235,15 @@ body {
   .header-text {
     font-size: 28px;
     padding-right: 20px;
+  }
+
+  .section-image {
+    order: -1; /* 이미지를 항상 위로 */
+  }
+
+  .circle-image {
+    width: 300px; /* 모바일에서 이미지 크기 축소 */
+    height: 300px;
   }
 }
 
